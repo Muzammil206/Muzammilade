@@ -1,101 +1,158 @@
-import Image from "next/image";
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Github, Linkedin, Twitter, Mail, Menu } from 'lucide-react'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+
+const navItems = [
+  { label: 'HOME', href: '/' },
+  { label: 'ABOUT', href: '/about' },
+  { label: 'SERVICES', href: '/services' },
+  { label: 'PORTFOLIO', href: '/portfolio' },
+  { label: 'BLOGS', href: '/blogs' },
+  { label: 'CONTACT', href: '/contact' },
+]
+
+function NavLinks({ activePath, handleNavClick }) {
+  return (
+    <>
+      {navItems.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={`text-sm tracking-wide transition-all duration-300 hover:text-blue-600 relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-blue-600 after:transition-all after:duration-300 ${
+            activePath === item.href 
+              ? "text-blue-600 after:w-full" 
+              : "text-gray-600 after:w-0"
+          } hover:after:w-full`}
+          onClick={() => handleNavClick(item.href)}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </>
+  )
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [activePath, setActivePath] = useState('/')
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleNavClick = (href) => {
+    setActivePath(href)
+  }
+
+  return (
+    <main className="min-h-screen bg-white">
+      {/* Navigation */}
+      <header className="fixed top-0 left-0 right-0 w-full py-6 px-4 md:px-6 flex items-center justify-between bg-white/80 backdrop-blur-sm z-50">
+        <Link 
+          href="/" 
+          className="flex items-center space-x-2 text-lg font-medium group"
+          onClick={() => handleNavClick('/')}
+        >
+          <span className="text-blue-600 font-mono">/ML</span>
+          <span className="group-hover:text-blue-600 transition-colors">MuzammilAde</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <NavLinks activePath={activePath} handleNavClick={handleNavClick} />
+        </nav>
+
+        {/* Mobile Navigation */}
+        <Sheet>
+          <SheetTrigger className="md:hidden p-2 hover:bg-gray-100 rounded-md">
+            <Menu className="h-6 w-6" />
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[240px] sm:w-[280px]">
+            <nav className="flex flex-col space-y-4 mt-6">
+              <NavLinks activePath={activePath} handleNavClick={handleNavClick} />
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </header>
+
+      
+      <section className=" pt-12  lg:pt-24 min-h-screen flex items-center">
+        <div className="container w-full px-[10%] lg:px-[10%] flex md:flex-row flex-col-reverse md:flex-row items-center justify-between">
+          <div className="flex-1 space-y-8 md:pr-12 pt-6">
+            <div className="space-y-4">
+              <div className="relative inline-block">
+                <p className="text-sm uppercase tracking-wider text-gray-600 mb-2">
+                  HELLO, MY NAME IS
+                </p>
+                <div className="absolute bottom-[-4px] left-0 w-1/3 h-[2px] bg-blue-600" />
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+                Ismail Muzammil
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600">
+                Software / Gis Developer
+              </p>
+            </div>
+            
+            <p className="max-w-[600px] text-gray-600 leading-relaxed">
+            I am a passionate  software and geospatial developer with expertise in GIS, remote sensing,
+             and web-based geospatial solutions. With a BSc in Geoinformatics and
+            over three years of experience in software development, I specialize in creating
+             innovative geospatial applications
+             using tools like PostgreSQL, PostGIS, QGIS, Mapbox, and the ArcGIS JavaScript API etc...
+            </p>
+
+            <div className="flex items-center space-x-6">
+              <Link 
+                href="https://github.com" 
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-6 w-6" />
+                <span className="sr-only">GitHub</span>
+              </Link>
+              <Link 
+                href="https://linkedin.com" 
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="h-6 w-6" />
+                <span className="sr-only">LinkedIn</span>
+              </Link>
+              <Link 
+                href="https://twitter.com" 
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Twitter className="h-6 w-6" />
+                <span className="sr-only">Twitter</span>
+              </Link>
+              <Link 
+                href="mailto:your@email.com" 
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+              >
+                <Mail className="h-6 w-6" />
+                <span className="sr-only">Email</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex-1 mt-[-4] md:mt-0">
+            <div className="relative w-[250px] h-[250px] md:w-[450px] md:h-[450px] rounded-full overflow-hidden bg-gray-100">
+              <Image
+                src="/ade.jpg"
+                alt="Profile picture"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                priority
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }
+
