@@ -1,5 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
+// import Muzammil from '../public/Muzammil.pdf'
+
 
 export function About() {
   return (
@@ -9,7 +11,7 @@ export function About() {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <Image
-              src="/placeholder.svg"
+              src="/ade.png"
               alt="About me image"
               width={500}
               height={500}
@@ -32,10 +34,10 @@ export function About() {
             </p>
             <div className="pt-4">
               <Link
-                href="/path-to-your-resume.pdf"
+                href= '/muzammil.pdf'
                 className="inline-block bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300"
                 target="_blank"
-                rel="noopener noreferrer"
+            
               >
                 Download Resume
               </Link>

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { About}  from '@/components/about'
 import { Skills } from '@/components/skills'
 import { Projects } from '@/components/project' 
+import { Footer } from '@/components/footer'
 import { Github, Linkedin, Twitter, Mail, Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
@@ -157,6 +158,8 @@ export default function Home() {
        <About/>
        <Skills/>
        <Projects/>
+       <Footer/>
+
     </main>
   )
 }
