@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-
 import { useToast } from "@/hooks/use-toast"
 
 import { Github, Linkedin, Twitter, Mail } from "lucide-react"
@@ -24,18 +23,25 @@ export function Footer() {
       }
     
       const handleSubmit = async (e) => {
-        e.preventDefault()
-        setIsSubmitting(true)
-    
-        
+        e.preventDefault();
+        const formData = new FormData();
+        Object.entries(query).forEach(([key, value]) => {
+          formData.append(key, value);
+        });
+        fetch("https://getform.io/{your-form-endpoint}", {
+          method: "POST",
+          body: formData
+        }).then(() => setQuery({ name: "", email: "", message: "" }))
         await new Promise((resolve) => setTimeout(resolve, 1000))
     
         toast({
           title: "Message sent!",
           description: "Thank you for your message. I'll get back to you soon.",
         })
+
+        
     
-        setFormData({ name: "", email: "", message: "" })
+        
         setIsSubmitting(false)
       }
     
@@ -51,7 +57,11 @@ export function Footer() {
         <CardDescription>Send me a message and I'll get back to you as soon as possible.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4"
+          action="https://formspree.io/f/mdkanroy"
+          method="POST"
+          
+        >
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium text-gray-700">
               Name

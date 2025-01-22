@@ -12,11 +12,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 const navItems = [
   { label: 'HOME', href: '/' },
-  { label: 'ABOUT', href: '/about' },
-  { label: 'SERVICES', href: '/services' },
-  { label: 'PORTFOLIO', href: '/portfolio' },
-  { label: 'BLOGS', href: '/blogs' },
-  { label: 'CONTACT', href: '/contact' },
+  { label: 'ABOUT', href: '/#about' },
+  { label: 'SKILLS', href: '/#skils' },
+  { label: 'PROJECT', href: '/#projects' },
+  { label: 'CONTACT', href: '/#contact' },
 ]
 
 function NavLinks({ activePath, handleNavClick }) {
