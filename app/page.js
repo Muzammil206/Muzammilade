@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { About}  from '@/components/about'
@@ -41,10 +41,32 @@ function NavLinks({ activePath, handleNavClick }) {
 
 export default function Home() {
   const [activePath, setActivePath] = useState('/')
+  const [activeSection, setActiveSection] = useState('');
 
   const handleNavClick = (href) => {
     setActivePath(href)
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('div[id]');
+      let currentSection = '';
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 100; 
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (window.scrollY >= sectionTop && window.scrollY <= sectionBottom) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <main className="min-h-screen bg-white">
@@ -53,7 +75,7 @@ export default function Home() {
         <Link 
           href="/" 
           className="flex items-center space-x-2 text-lg font-medium group"
-          onClick={() => handleNavClick('/')}
+           onClick={() => handleNavClick('/')}
         >
           <span className="text-blue-600 font-mono">/ML</span>
           <span className="group-hover:text-blue-600 transition-colors">MuzammilAde</span>
@@ -61,7 +83,7 @@ export default function Home() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <NavLinks activePath={activePath} handleNavClick={handleNavClick} />
+          <NavLinks activePath={activePath} handleNavClick={handleNavClick}  scroll={false} />
         </nav>
 
         {/* Mobile Navigation */}
