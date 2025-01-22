@@ -3,28 +3,28 @@ import { ExternalLink, Github } from "lucide-react"
 
 const projects = [
   {
-    title: "WebGIS Platform for Urban Planning",
+    title: "Web-based cadastral database system",
     description:
-      "Developed a comprehensive WebGIS platform using React, Mapbox GL JS, and PostGIS to visualize and analyze urban development data for city planners.",
-    image: "/placeholder.svg",
+      "Developed a real-time, interactive web-based cadastral database. This open-source application, built with MongoDB, Next.js, and Mapbox, allows users to efficiently visualize, manage, and cadastral data.",
+    image: "/landg.png",
     tags: ["React", "Mapbox GL JS", "PostGIS", "Node.js"],
-    liveLink: "https://urban-planning-webgis.example.com",
-    githubLink: "https://github.com/yourusername/urban-planning-webgis",
+    liveLink: "https://land-guard.vercel.app/map",
+    githubLink: "https://github.com/Muzammil206/LandGuard-",
   },
   {
-    title: "Geospatial Data Processing Pipeline",
+    title: "st-data4 ( satallite data visualiation platform)",
     description:
-      "Created an automated pipeline using Python and GDAL to process and analyze large-scale satellite imagery for agricultural monitoring.",
-    image: "/placeholder.svg",
-    tags: ["Python", "GDAL", "Pandas", "NumPy"],
-    liveLink: "https://agri-monitor.example.com",
-    githubLink: "https://github.com/yourusername/geo-data-pipeline",
+      "A platform for exploring, visualizing, and downloading satellite data, with a special focus on Nigeria and global datasets. This tool provides access to high-resolution imagery, including data from two Nigerian satellites.",
+    image: "/app.png",
+    tags: ["next.js", "Ersi ArcGis javascript api",  "postgress", 'Supabase'],
+    liveLink: "https://st-data4.vercel.app",
+    githubLink: "https://github.com/Muzammil206/st-data4",
   },
   {
     title: "Interactive Flood Risk Map",
     description:
       "Built an interactive flood risk assessment tool using ArcGIS JavaScript API and React, integrating real-time weather data and historical flood records.",
-    image: "/placeholder.svg",
+    image: "/stdata.png",
     tags: ["ArcGIS JS API", "React", "Node.js", "PostgreSQL"],
     liveLink: "https://flood-risk-map.example.com",
     githubLink: "https://github.com/yourusername/flood-risk-map",
