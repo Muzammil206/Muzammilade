@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { About}  from '@/components/about'
+import { Skills } from '@/components/skills'
+import { Projects } from '@/components/project' 
 import { Github, Linkedin, Twitter, Mail, Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
@@ -103,7 +106,7 @@ export default function Home() {
 
             <div className="flex items-center space-x-6">
               <Link 
-                href="https://github.com" 
+                href="https://github.com/muzammil206" 
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -112,9 +115,8 @@ export default function Home() {
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/ismail-muzammil-50543323a" 
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
-                target="_blank"
                 rel="noopener noreferrer"
               >
                 <Linkedin className="h-6 w-6" />
@@ -130,7 +132,7 @@ export default function Home() {
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link 
-                href="mailto:your@email.com" 
+                href="mailto:ismailmuzammil206@gmail.com" 
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
               >
                 <Mail className="h-6 w-6" />
@@ -152,6 +154,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+       <About/>
+       <Skills/>
+       <Projects/>
     </main>
   )
 }
